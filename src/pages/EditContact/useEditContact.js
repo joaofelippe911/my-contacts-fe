@@ -5,9 +5,8 @@ import ContactsService from '../../services/ContactsService';
 import toast from '../../utils/toast';
 import useIsMounted from '../../hooks/useIsMounted';
 import useSafeAsyncAction from '../../hooks/useSafeAsyncAction';
-import Presentation from './Presentation';
 
-export default function Container() {
+export default function useEditContact() {
   const [isLoading, setIsLoading] = useState(true);
   const [contactName, setContactName] = useState('');
   const contactFormRef = useRef(null);
@@ -60,12 +59,8 @@ export default function Container() {
       });
     }
   }
-  return (
-    <Presentation
-      isLoading={isLoading}
-      onSubmit={handleSubmit}
-      contactName={contactName}
-      contactFormRef={contactFormRef}
-    />
-  );
+
+  return {
+    isLoading, contactName, contactFormRef, handleSubmit,
+  };
 }
