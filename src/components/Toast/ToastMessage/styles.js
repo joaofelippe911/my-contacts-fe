@@ -1,4 +1,28 @@
-import styled, { css } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+`;
 
 const containerVariants = {
   default: css`
@@ -21,6 +45,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  animation: ${fadeIn} .3s;
+
 
   ${({ type }) => containerVariants[type] || containerVariants.default}
 
@@ -31,4 +57,8 @@ export const Container = styled.div`
   img {
     margin-right: 8px;
   }
+
+  ${({ isLeaving }) => isLeaving && css`
+    animation: ${fadeOut} .2s forwards;
+  `}
 `;
