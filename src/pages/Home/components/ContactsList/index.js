@@ -1,4 +1,5 @@
 import PropTypes, { shape } from 'prop-types';
+import { memo } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -7,7 +8,7 @@ import edit from '../../../../assets/images/icons/edit.svg';
 import trash from '../../../../assets/images/icons/trash.svg';
 import { Card, ListHeader } from './styles';
 
-export default function ContactsList({
+function ContactsList({
   filteredContacts,
   orderBy,
   onToggleOrderBy,
@@ -74,3 +75,5 @@ ContactsList.propTypes = {
   onToggleOrderBy: PropTypes.func.isRequired,
   onDeleteContact: PropTypes.func.isRequired,
 };
+
+export default memo(ContactsList);
